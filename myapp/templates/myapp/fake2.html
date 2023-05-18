@@ -1,0 +1,37 @@
+def user_dataview(request):
+    if request.method == 'POST':
+        fullname = request.POST['fname']
+        email = request.POST['email']
+        password = request.POST['password']
+        contact = request.POST['contact']
+        dob = request.POST['dob']
+        gender = request.POST['gender']
+        user = Customer.objects.filter(Email=email)
+
+        if user:
+            message = "User already exists"
+            return render(request, "myapp/register.html", {'msg': message})
+        else:
+            message = "Successfully registered, please login"
+            new_user = Customer.objects.create(Fullname=fullname, Email=email, Password=password, Contact=contact, Dob=dob, Gender=gender)
+            return render(request, "myapp/login.html", {'msg': message})
+    else:
+        return HttpResponse("Invalid Request Method")
+
+
+        def user_dataview(request):
+        if request=='POST':
+            fullname=request.POST['fname']
+            email=request.POST['email']
+            password=request.POST['password']
+            contact=request.POST['contact']
+            dob=request.POST['dob']
+            gender=request.POST['gender']
+            user=Customer.objects.filter(Email=email)
+            if user:
+               message=": User already exit :"
+               return render(request,"myapp/register.html",{'msg':message})
+            else:
+                message=": succsessfully register please login :"
+                newsuser=Customer.objects.create(Fullname=fullname,Email=email,Password=password,Contact=contact,Dob=dob,Gender=gender)
+                return render(request,"myapp/login.html",{'msg':message})

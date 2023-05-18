@@ -1,0 +1,208 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Webpage</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background-color: red;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      font-size: 24px;
+      padding: 10px 20px;
+    }
+    main {
+      flex: 1; /* Use flexbox to fill remaining space */
+      background-color: skyblue;
+      background-image: url('{% static "img/pic5.jpg" %}');
+      color: #fff; /* Add text color for contrast */
+      padding: 1px; /* Add padding for content */
+      font-size: 19px; /* Increase font size */
+      background-size: 100% 100%; /* Maintain resolution and dimensions */
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+    
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+    .header-logo {
+      font-weight: bold;
+      margin-right: 90px;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+    }
+    nav a {
+      color: #fff;
+      margin-right: 20px;
+      text-decoration: none;
+    }
+    nav a:hover {
+	  background-color:gray;
+	  color: #fff;
+    }
+	.header-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.header-buttons form {
+  margin-left: 10px;
+}
+
+.header-buttons button {
+  background-color: #fff;
+  color: red;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .header-buttons form {
+    margin-left: 5px;
+  }
+}
+main h1 {
+  margin-top: 2px;
+}
+
+main table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #f2f2f2;
+}
+
+main td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  color: #333333;
+}
+
+tr:nth-child(even) {
+  background-color: #ffffff;
+}
+footer {
+      flex: 0 0 7%; /* Use flexbox to set footer height */
+      background-color: royalblue;
+      display: flex; /* Use flexbox to center content */
+      justify-content: center;
+      align-items: center;
+      color: #fff; /* Add text color for contrast */
+      font-size: 16px; /* Increase font size */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <div class="header-logo">My Web</div>
+        <nav>
+            <a href="{% url 'user_home' %}">Home</a>
+            <a href="{% url 'earn_money' %}">Earn_money</a>
+            <a href="{% url 'offer' %}">Offers</a>
+            <a href="{% url 'profile' %}">Profile</a>
+          </nav>
+    </div>
+    <div class="header-buttons">
+      <div class="welcome-message">
+        Welcome, {{request.session.Fullname}}
+      </div>
+      <form action="{% url 'user_logout' %}" method="POST">
+        {% csrf_token %}
+        <button>Logout</button>
+      </form>
+    </div>
+  </header>
+  
+  
+</div>
+  </header>
+  <main><center><h1 style="color:red; font-size:25px; text-shadow: 2px 2px 2px #000000;">THIS IS YOUR OFFERS</h1>
+<table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Offer</th>
+        <th>Apps</th>
+        <th>Link</th>
+        <th>Valid Till</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Mobile recharge</td>
+        <td><img src='{% static "img/paytm2.png" %}' width="40"></td>
+        <td><a href="https://paytm.com/">https://paytm.com/</a></td>
+        <td>28-May-2023</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Flat 50% off on Clothing</td>
+        <td><img src='{% static "img/amazon.png" %}' alt="Amazon Logo" width="40"></td>
+        <td><a href="https://www.amazon.in/">https://www.amazon.in/</a></td>
+        <td>15-Jun-2023</td>
+      </tr>
+  
+      <tr>
+        <td>3</td>
+        <td>20% discount on movie tickets</td>
+        <td><img src='{% static "img/makmyprip.png" %}'  width="40"></td>
+        <td><a href="https://in.bookmyshow.com/">https://in.bookmyshow.com/</a></td>
+        <td>30-Jun-2023</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Get Rs.50 cashback on first payment</td>
+        <td><img src='{% static "img/gpay.png" %}' width="40"></td>
+        <td><a href="https://gpay.app.goo.gl/">https://gpay.app.goo.gl/</a></td>
+        <td>31-Jul-2023</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Get up to Rs.100 cashback on first recharge or bill payment</td>
+        <td><img src='{% static "img/phonepe2.png" %}' width="40"></td>
+        <td><a href="https://www.phonepe.com/">https://www.phonepe.com/</a></td>
+        <td>30-Jun-2023</td>
+      </tr>  
+    </tbody>
+  </table>
+  
+  
+ <!-- {% if key1 %}
+  {% for i in key1 %}
+  <tr>
+    <td>{{i.id}}</td>
+    <td>{{i.Firstname}}</td>
+    <td>{{i.Lastname}}</td>
+    <td>{{i.Email}}</td>
+    <td>{{i.Contact}}</td>
+  </tr>
+ {% endfor %}
+  
+ {% endif %}
+-->
+
+  </center></main>
+  <footer><p class="text-md text-white font-bold mb-2">
+    © {% now "Y" %} Developed by RAJU in Python using Django Framework
+</p></footer>
+</body>
+</html>

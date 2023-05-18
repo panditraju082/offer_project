@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Webpage</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background-color: red;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      font-size: 24px;
+      padding: 10px 20px;
+    }
+    main {
+      flex: 1; /* Use flexbox to fill remaining space */
+      background-color: skyblue;
+      background-image: url('{% static "img/pic5.jpg" %}');
+      color: #fff; /* Add text color for contrast */
+      padding: 1px; /* Add padding for content */
+      font-size: 19px; /* Increase font size */
+      background-size: 100% 100%; /* Maintain resolution and dimensions */
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+    footer {
+      flex: 0 0 7%; /* Use flexbox to set footer height */
+      background-color: darkcyan;;
+      display: flex; /* Use flexbox to center content */
+      justify-content: center;
+      align-items: center;
+      color: #fff; /* Add text color for contrast */
+      font-size: 16px; /* Increase font size */
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+    .header-logo {
+      font-weight: bold;
+      margin-right: 90px;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+    }
+    nav a {
+      color: #fff;
+      margin-right: 20px;
+      text-decoration: none;
+    }
+    nav a:hover {
+	  background-color:gray;
+	  color: #fff;
+    }
+	.header-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.header-buttons form {
+  margin-left: 10px;
+}
+
+.header-buttons button {
+  background-color: #fff;
+  color: red;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .header-buttons form {
+    margin-left: 5px;
+  }
+}
+main h1 {
+	margin-top: 2px;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <div class="header-logo">My Web</div>
+      <nav>
+        <a href="{% url 'home' %}">Home</a>
+		<a href="{% url 'about' %}">About</a>
+		<a href="{% url 'contact' %}">Contact</a>
+      </nav>
+    </div>
+    <div class="header-buttons">
+		<form action="{% url 'login' %}" method="POST">
+			{% csrf_token %}
+			<button>Login</button>
+		</form> 
+		<form action="{% url 'register' %}" method="POST">
+			{% csrf_token %}
+			<button >Register</button>
+		   </form>
+</div>
+  </header>
+  <main><center><h1 style="color :red"> This is home page page</h1></center></main>
+  <footer><p class="text-md text-white font-bold mb-2">
+    © {% now "Y" %} Developed by RAJU in Python using Django Framework
+</p></footer>
+</body>
+</html>
